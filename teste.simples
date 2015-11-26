@@ -1,0 +1,8 @@
+programa teste
+inteiro x
+inicio
+	
+	leia x
+	escreva x + 1
+
+fimprograma
