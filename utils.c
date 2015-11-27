@@ -10,6 +10,7 @@
 #define TAM_TSIMB 100  /* Tamanho da tabela de simbolos */
 #define TAM_PSEMA 100  /* Tamanho da pilha semantica    */
 
+
 /*---------------------------------------------------------
  *  Variaveis globais
  *--------------------------------------------------------*/
@@ -17,12 +18,14 @@ int TOPO_TSIMB     = 0;  /* TOPO da tabela de simbolos */
 int TOPO_PSEMA     = 0;  /* TOPO da pilha semantica */
 int ROTULO         = 0;  /* Proximo numero de rotulo */
 int CONTA_VARS     = 0;  /* Numero de variaveis */
+int CONTA_ULT       = 0;  /* Guarda último id de variável*/
 int POS_SIMB;            /* Pos. na tabela de simbolos */
 int aux;                 /* variavel auxiliar */
 int numLinha = 1; /* numero da linha no programa */
 char atomo[30];   /* nome de um identif. ou numero */
 char SALVAIDENTIFICADOR[50];
-
+enum enum_tipo {INT, LOG};
+int TIPO;
 /*---------------------------------------------------------
  *  Rotina geral de tratamento de erro
  *--------------------------------------------------------*/
@@ -45,6 +48,9 @@ void ERRO (char *msg, ...) {
 struct elem_tab_simbolos {
   char id[30];
   int desloca;
+  int tamanho ;
+  int tipo;
+
 } TSIMB [TAM_TSIMB], elem_tab;
 
 /*---------------------------------------------------------
@@ -64,7 +70,13 @@ int busca_simbolo (char *ident)
   for (;strcmp (TSIMB[i].id, ident) && i >= 0; i--);
   return i;
 }
-
+void mostra_tabela_simbolos(){
+  int i;
+  printf("\n%3s\t%20s\t%3s\t%3s\n", "#", "id", "tam", "dsl");
+  for (i=0; i < TOPO_TSIMB; i++)
+    printf("%3d\t%20s\t%3d\t%3d\n", i, TSIMB[i].id,TSIMB[i].tamanho, TSIMB[i].desloca);
+  printf("\n\n");
+}
 /*---------------------------------------------------------
  * Funcao que INSERE um simbolo na tabela de simbolos.      
  *    Se ja' existe um simbolo com mesmo nome e mesmo nivel 
@@ -84,15 +96,18 @@ void insere_simbolo (struct elem_tab_simbolos *elem)
      TSIMB [TOPO_TSIMB] = *elem;
      TOPO_TSIMB++;
   }
+  mostra_tabela_simbolos();
 }
 
 
 /*---------------------------------------------------------
  * Funcao de insercao de uma variavel na tabela de simbolos
  *---------------------------------------------------------*/
-void insere_variavel (char *ident) {
+void insere_variavel (char *ident, int tam, int tipo) {
    strcpy (elem_tab.id, ident);
-   elem_tab.desloca = CONTA_VARS;
+   elem_tab.desloca = CONTA_ULT;
+   elem_tab.tamanho = tam;
+   elem_tab.tipo = tipo;
    insere_simbolo (&elem_tab);
 }
 

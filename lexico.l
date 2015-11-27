@@ -8,7 +8,6 @@ identificador  [a-zA-Z]([a-zA-Z0-9])*
 numero         [0-9]+
 espaco         [ \t]+
 novalinha      [\n]
-
 %x comentario
 
 %%
@@ -45,7 +44,8 @@ nao		return T_NAO;
 "<-"		return T_ATRIB;
 "("		return T_ABRE;
 ")"		return T_FECHA;
-
+"["		return T_ABRECOLCHETES;
+"]"		return T_FECHACOLCHETES;
 inteiro		return T_INTEIRO;
 logico		return T_LOGICO;
 V		return T_V;

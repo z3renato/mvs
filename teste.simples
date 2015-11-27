@@ -1,7 +1,8 @@
 programa teste
-inteiro vetor[5]
+inteiro b vetor[5] c d r
+
 inicio
-	
+	//vetor[1] <- 2
 	
 
 fimprograma

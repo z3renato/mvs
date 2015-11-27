@@ -73,9 +73,11 @@ extern int yydebug;
     T_NUMERO = 283,
     T_NAO = 284,
     T_ABRE = 285,
-    T_FECHA = 286,
-    T_LOGICO = 287,
-    T_INTEIRO = 288
+    T_ABRECOLCHETES = 286,
+    T_FECHACOLCHETES = 287,
+    T_FECHA = 288,
+    T_LOGICO = 289,
+    T_INTEIRO = 290
   };
 #endif
 

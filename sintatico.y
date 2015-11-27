@@ -93,8 +93,8 @@ declaracao_variaveis
       ;
 
 tipo
-      : T_LOGICO
-      | T_INTEIRO
+      : T_LOGICO {TIPO = 1;}
+      | T_INTEIRO{TIPO = 0;}
       ;
 
 lista_variaveis
@@ -111,18 +111,20 @@ lista_variaveis
 
 
 encontra_vetor
-      : { insere_variavel (SALVAIDENTIFICADOR, tipo); CONTA_VARS++; }
+      : { insere_variavel (SALVAIDENTIFICADOR, 1, TIPO); CONTA_VARS++; CONTA_ULT++; }
       | T_ABRECOLCHETES
           T_NUMERO
-              { int ind;
+              { int ind; int tam = atoi(atomo); int d = CONTA_ULT; 
                 char nome_ident[50];
                 char indice[50];
-                for(ind = 0; i < atoi(atomo); i++){
+                CONTA_VARS+=tam;d+=tam;
+               
                 strcpy(nome_ident, SALVAIDENTIFICADOR);
-                sprintf(indice, " %i", ind);
+                sprintf(indice, " %i", 0);
                 strcat(nome_ident, indice);
-                insere_variavel (nome_ident, tipo); CONTA_VARS++;
-                }
+                
+                insere_variavel (nome_ident, tam, TIPO  ); 
+                CONTA_ULT = d;
               }
         T_FECHACOLCHETES
       ;
