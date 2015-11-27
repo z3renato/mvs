@@ -1,8 +1,7 @@
 programa teste
-inteiro x
+inteiro vetor[5]
 inicio
 	
-	leia x
-	escreva x + 1
+	
 
 fimprograma

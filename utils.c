@@ -21,6 +21,7 @@ int POS_SIMB;            /* Pos. na tabela de simbolos */
 int aux;                 /* variavel auxiliar */
 int numLinha = 1; /* numero da linha no programa */
 char atomo[30];   /* nome de um identif. ou numero */
+char SALVAIDENTIFICADOR[50];
 
 /*---------------------------------------------------------
  *  Rotina geral de tratamento de erro

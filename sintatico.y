@@ -46,6 +46,8 @@
 %token T_NUMERO
 %token T_NAO
 %token T_ABRE
+%token T_ABRECOLCHETES
+%token T_FECHACOLCHETES
 %token T_FECHA
 %token T_LOGICO
 %token T_INTEIRO
@@ -98,11 +100,35 @@ tipo
 lista_variaveis
       : lista_variaveis 
         T_IDENTIF 
-          { insere_variavel (atomo); CONTA_VARS++; }
+          
+          { strcpy(SALVAIDENTIFICADOR, atomo); }
+            encontra_vetor
 
       | T_IDENTIF
-          { insere_variavel (atomo); CONTA_VARS++; }
+          { strcpy(SALVAIDENTIFICADOR, atomo); }
+            encontra_vetor
       ;
+
+
+encontra_vetor
+      : { insere_variavel (SALVAIDENTIFICADOR, tipo); CONTA_VARS++; }
+      | T_ABRECOLCHETES
+          T_NUMERO
+              { int ind;
+                char nome_ident[50];
+                char indice[50];
+                for(ind = 0; i < atoi(atomo); i++){
+                strcpy(nome_ident, SALVAIDENTIFICADOR);
+                sprintf(indice, " %i", ind);
+                strcat(nome_ident, indice);
+                insere_variavel (nome_ident, tipo); CONTA_VARS++;
+                }
+              }
+        T_FECHACOLCHETES
+      ;
+
+
+
 
 lista_comandos
       : /* vazio */

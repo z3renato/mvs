@@ -182,10 +182,13 @@ void executa_programa (void)
 	             break;
 	 case SOMA : M[s-1] = M[s-1] + M[s]; s--; i++;
 	             break;
+/*Inclusão de instruções para tratar os vetores*/               
 
-   case CRVV : M[n + M[s-1]] = M[s]; s = s-2; i++;
+   case ARZV : M[P[i].o + M[s-1]] = M[s]; s = s-2; i++; //Armazena no vetor
 
+   case CRVV : M[s] = M[P[i].o + M[s]];  //Carrega do vetor
 
+//***************************************************
 
 	 case SUBT : M[s-1] = M[s-1] - M[s]; s--; i++;
 	             break;
