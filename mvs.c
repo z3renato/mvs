@@ -33,12 +33,13 @@ char *inst[TOTALINST] = {
  "LEIA", /* Le */
  "INPP", /* Inicia Programa Principal */
  "AMEM", /* Aloca memoria */
+ "DMEM", /* Libera memória */
  "FIMP"  /* Fim do programa */
 };
 
 enum codinst {CRVG, CRCT, CRVV, ARZV, SOMA, SUBT, MULT, DIVI, CMIG,
 CMMA, CMME, CONJ, DISJ, NEGA, ARZG, DSVS, DSVF, NADA, ESCR,
-LEIA, INPP, AMEM, FIMP};
+LEIA, INPP, AMEM, DMEM, FIMP};
 
 /*--------------------------------------------------------
  * Regioes do ambiente de execucao da MVS                    
@@ -226,6 +227,8 @@ void executa_programa (void)
 	 case NADA : i++;
 	             break;
 	 case FIMP : printf("\n\n"); return;
+
+   case DMEM : break;
 	 case LEIA : s++; printf ("? "); 
                      fgets (numstr, 5, stdin);                      
                      M[s] = atoi (numstr); i++;

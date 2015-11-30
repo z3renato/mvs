@@ -1,8 +1,11 @@
 programa teste
-inteiro b vetor[5] c d r
+inteiro b w vetor[5] c[2] d r
+logico a[3] u	
 
 inicio
-	//vetor[1] <- 2
 	
+	escreva b
+	escreva vetor[0]
+	 
 
 fimprograma
